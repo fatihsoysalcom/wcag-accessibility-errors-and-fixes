@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WCAG Erişilebilirlik Hataları ve Çözümleri</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .bad-example {
+            background-color: #ffe0e0; /* Light red for errors */
+            border: 1px solid #cc0000;
+        }
+        .good-example {
+            background-color: #e0ffe0; /* Light green for solutions */
+            border: 1px solid #009900;
+        }
+        img {
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .note {
+            font-style: italic;
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WCAG Erişilebilirlik Hataları ve Çözümleri</h1>
+    <p>Bu örnek, yaygın WCAG (Web İçeriği Erişilebilirlik Yönergeleri) hatalarını ve bu hatalara yönelik erişilebilir çözümleri göstermektedir. Otomatik denetim araçlarının sınırlılıklarını ve manuel, kapsamlı bir incelemenin önemini vurgular.</p>
+
+    <section class="bad-example">
+        <h2>Erişilebilirlik Hataları (WCAG Uyumsuz)</h2>
+        <p>Aşağıdaki örnekler, sıkça karşılaşılan WCAG hatalarını göstermektedir. Bu hatalar, ekran okuyucu kullanıcıları ve diğer yardımcı teknolojiler için ciddi sorunlar yaratabilir.</p>
+
+        <h3>1. Resimler İçin Eksik veya Yetersiz Alternatif Metin (WCAG 1.1.1)</h3>
+        <div>
+            <p><strong>Hata: `alt` niteliği eksik.</strong> Ekran okuyucular bu resmi tamamen atlar veya dosya adını okur.</p>
+            <!-- WCAG Hata: Resim için alt niteliği eksik. Ekran okuyucular ne olduğunu bilemez. -->
+            <img src="https://via.placeholder.com/150/FF0000/FFFFFF?text=Resim1" alt="">
+            <div class="note">Bu resim, bir manzara fotoğrafını temsil etmektedir.</div>
+        </div>
+        <br>
+        <div>
+            <p><strong>Hata: `alt` niteliği anlamsız veya jenerik.</strong> Otomatik araçlar `alt` niteliğinin varlığını algılar, ancak içeriğinin yetersiz olduğunu anlayamaz.</p>
+            <!-- WCAG Hata: alt metni anlamsız. Otomatik araçlar varlığını algılar ama anlamını değerlendiremez. -->
+            <img src="https://via.placeholder.com/150/0000FF/FFFFFF?text=Resim2" alt="resim">
+            <div class="note">Bu resim, bir toplantıdaki insanları temsil etmektedir.</div>
+        </div>
+
+        <h3>2. Form Alanları İçin Etiket Eksikliği (WCAG 1.3.1, 3.3.2)</h3>
+        <div>
+            <p><strong>Hata: Giriş alanı ile ilişkili `label` etiketi yok.</strong> Ekran okuyucu kullanıcıları bu giriş alanının ne için olduğunu bilemez.</p>
+            <!-- WCAG Hata: Giriş alanı için label etiketi eksik. -->
+            <input type="text" placeholder="Kullanıcı Adı">
+            <div class="note">Bu alan kullanıcı adını girmek içindir.</div>
+        </div>
+
+        <h3>3. Anlamsız Bağlantı Metni (WCAG 2.4.4)</h3>
+        <div>
+            <p><strong>Hata: Bağlantı metni bağlamdan bağımsız ve anlamsız.</strong> Ekran okuyucu kullanıcıları, bağlantının nereye gittiğini veya ne hakkında olduğunu anlamakta zorlanır.</p>
+            <!-- WCAG Hata: Bağlantı metni "buraya tıklayın" gibi jenerik. -->
+            <a href="#">Daha fazla bilgi için buraya tıklayın.</a>
+            <div class="note">Bu bağlantı, ürün detayları sayfasına gitmelidir.</div>
+        </div>
+    </section>
+
+    <section class="good-example">
+        <h2>Erişilebilir Çözümler (WCAG Uyumlu)</h2>
+        <p>Aşağıdaki örnekler, yukarıdaki hataların WCAG standartlarına uygun olarak nasıl düzeltileceğini göstermektedir.</p>
+
+        <h3>1. Resimler İçin Doğru Alternatif Metin Kullanımı (WCAG 1.1.1)</h3>
+        <div>
+            <p><strong>Çözüm: Resmin içeriğini açıklayan `alt` niteliği.</strong> Ekran okuyucular, resmin ne anlama geldiğini kullanıcıya iletir.</p>
+            <!-- WCAG Çözüm: Resmin içeriğini açıklayan anlamlı alt metin. -->
+            <img src="https://via.placeholder.com/150/FF0000/FFFFFF?text=Resim1" alt="Kırmızı arka plan üzerinde beyaz metinle 'Resim1' yazan bir yer tutucu resim.">
+            <div class="note">Bu resim, bir manzara fotoğrafını temsil etmektedir.</div>
+        </div>
+        <br>
+        <div>
+            <p><strong>Çözüm: Dekoratif resimler için boş `alt` niteliği (`alt=""`).</strong> Resim sadece görsel bir süsleme ise, ekran okuyucular tarafından atlanması sağlanır.</p>
+            <!-- WCAG Çözüm: Dekoratif resimler için alt="" kullanmak. -->
+            <img src="https://via.placeholder.com/150/0000FF/FFFFFF?text=Resim2" alt="">
+            <div class="note">Bu resim, sadece görsel bir ayırıcıdır.</div>
+        </div>
+
+        <h3>2. Form Alanları İçin İlişkili Etiketler (WCAG 1.3.1, 3.3.2)</h3>
+        <div>
+            <p><strong>Çözüm: `label` etiketi `for` niteliği ile giriş alanına bağlanır.</strong> Ekran okuyucular, etiketi giriş alanıyla ilişkilendirir ve kullanıcıya ne girmesi gerektiğini söyler.</p>
+            <!-- WCAG Çözüm: label ve input'u for/id ile ilişkilendirmek. -->
+            <label for="username_accessible">Kullanıcı Adı:</label>
+            <input type="text" id="username_accessible" placeholder="Kullanıcı Adınızı Girin">
+        </div>
+
+        <h3>3. Anlamlı Bağlantı Metni (WCAG 2.4.4)</h3>
+        <div>
+            <p><strong>Çözüm: Bağlantı metni, hedefini veya amacını açıkça belirtir.</strong> Ekran okuyucu kullanıcıları, bağlantının ne hakkında olduğunu kolayca anlar.</p>
+            <!-- WCAG Çözüm: Bağlantının amacını açıklayan metin. -->
+            <a href="#">Ürün Detayları Sayfasına Git</a>
+            <div class="note">Bu bağlantı, ürün detayları sayfasına gitmelidir.</div>
+        </div>
+    </section>
+
+    <p>Bu örnekler, otomatik araçların yalnızca belirli sorunları tespit edebileceğini, ancak bağlam, anlam ve kullanıcı deneyimi gibi unsurların manuel denetim gerektirdiğini göstermektedir.</p>
+</body>
+</html>
